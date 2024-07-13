@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -29,4 +30,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
+Route::controller(CategoryController::class)->group(function(){
+    Route::get('admin/category', 'index')->name('category');
+    Route::get('admin/category/create/', 'create')->name('category.add');
+});
 require __DIR__.'/auth.php';
